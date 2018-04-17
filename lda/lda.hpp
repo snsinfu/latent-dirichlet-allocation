@@ -66,6 +66,9 @@ class latent_dirichlet_allocation
     // Returns the topic-word dirichlet parameters of a trained model.
     xt::xtensor<double, 2> topic_word_dirichlets() const;
 
+    // Returns the config object.
+    config const& get_config() const;
+
   private:
     // Computes the document-topic dirichlet parameters and document-word-topic
     // distribution for a trained (or on-being-trained) model.

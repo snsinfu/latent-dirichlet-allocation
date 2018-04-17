@@ -200,3 +200,24 @@ TEST_CASE("latent_dirichlet_allocation can be pre-trained")
     double const doc_error = xt::amax(xt::abs(lda.transform(data) - doc_topic_dirichlets))();
     CHECK(doc_error < 0.01);
 }
+
+TEST_CASE("latent_dirichlet_allocation provides config getter")
+{
+    latent_dirichlet_allocation::config config;
+
+    config.topic_count = 123;
+    config.doc_topic_prior = 0.456;
+    config.topic_word_prior = 0.789;
+    config.inner_iter_count = 123;
+    config.outer_iter_count = 456;
+    config.convergence_threshold = 0.789;
+
+    latent_dirichlet_allocation lda{config};
+
+    CHECK(lda.get_config().topic_count == config.topic_count);
+    CHECK(lda.get_config().doc_topic_prior == config.doc_topic_prior);
+    CHECK(lda.get_config().topic_word_prior == config.topic_word_prior);
+    CHECK(lda.get_config().inner_iter_count == config.inner_iter_count);
+    CHECK(lda.get_config().outer_iter_count == config.outer_iter_count);
+    CHECK(lda.get_config().convergence_threshold == config.convergence_threshold);
+}

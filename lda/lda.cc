@@ -234,3 +234,7 @@ double latent_dirichlet_allocation::estimate_log_likelihood(
     return (L_dt + L_tw + L_dwt)();
 }
 
+latent_dirichlet_allocation::config const& latent_dirichlet_allocation::get_config() const
+{
+    return config_;
+}
