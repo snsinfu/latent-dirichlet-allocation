@@ -73,6 +73,14 @@ latent_dirichlet_allocation::latent_dirichlet_allocation(config const& conf)
     validate(config_);
 }
 
+
+latent_dirichlet_allocation::latent_dirichlet_allocation(config const& conf,
+                                                         xt::xtensor<double, 2> const& topic_word_dirichlets)
+    : config_{conf}
+    , topic_word_dirichlets_{topic_word_dirichlets}
+{
+}
+
 void latent_dirichlet_allocation::fit(xt::xtensor<double, 2> const& data)
 {
     auto const data_shape = data.shape();

@@ -163,3 +163,40 @@ TEST_CASE("latent_dirichlet_allocation uses topic_word_preconditions")
         CHECK(similarity > 0.9);
     }
 }
+
+TEST_CASE("latent_dirichlet_allocation can be pre-trained")
+{
+    xt::xtensor<double, 2> const data = {
+        {10, 8, 0, 1},
+        { 7, 5, 1, 0},
+        { 1, 0, 3, 0},
+        { 0, 1, 5, 1},
+        { 1, 0, 1, 2},
+        { 1, 1, 0, 7},
+    };
+
+    xt::xtensor<double, 2> const topic_word_dirichlets = {
+        { 19.271474,  14.334978,   1.291175,   1.419949},
+        {  2.089475,   1.882035,   1.262651,  11.051948},
+        {  1.638993,   1.78293 ,  10.446139,   1.528062},
+    };
+
+    xt::xtensor<double, 2> const doc_topic_dirichlets = {
+        { 18.902845,   1.93866 ,   1.158436},
+        { 12.801028,   1.169528,   2.029401},
+        {  1.66794 ,   1.108136,   4.22391 },
+        {  1.390934,   1.86928 ,   6.739759},
+        {  1.658023,   3.234247,   2.107712},
+        {  1.896804,   8.96629 ,   1.136877},
+    };
+
+    latent_dirichlet_allocation::config config;
+    config.topic_count = topic_word_dirichlets.shape()[0];
+    latent_dirichlet_allocation lda{config, topic_word_dirichlets};
+
+    double const topic_error = xt::amax(xt::abs(lda.topic_word_dirichlets() - topic_word_dirichlets))();
+    CHECK(topic_error < 0.01);
+
+    double const doc_error = xt::amax(xt::abs(lda.transform(data) - doc_topic_dirichlets))();
+    CHECK(doc_error < 0.01);
+}

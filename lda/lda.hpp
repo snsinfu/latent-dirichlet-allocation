@@ -47,6 +47,11 @@ class latent_dirichlet_allocation
     // Creates an untrained model with given configuration.
     explicit latent_dirichlet_allocation(config const& conf);
 
+    // Creates a trained model with given configuration and topic-word
+    // dirichlet parameters.
+    latent_dirichlet_allocation(config const& conf,
+                                xt::xtensor<double, 2> const& topic_word_dirichlets);
+
     // Trains the model with given data.
     void fit(xt::xtensor<double, 2> const& data);
 
