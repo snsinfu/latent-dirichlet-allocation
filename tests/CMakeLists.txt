@@ -22,12 +22,14 @@ endif()
 add_executable(run_tests
     run_tests.cc
 
+    test_tsv.cc
     test_reindex.cc
     test_lda.cc
     test_math.cc
     test_testutil.cc
 
     ../lda/lda.cc
+    ../tsv/tsv.cc
 )
 
 enable_testing()
