@@ -9,7 +9,7 @@
 #include <xtensor/xtensor.hpp>
 #include <xtensor/xstrided_view.hpp>
 
-#include "../src/lda.hpp"
+#include "../lda/lda.hpp"
 #include "testutil.hpp"
 
 

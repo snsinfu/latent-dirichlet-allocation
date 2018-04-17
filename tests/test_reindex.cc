@@ -1,7 +1,7 @@
 #include <catch.hpp>
 #include <xtensor/xtensor.hpp>
 
-#include "../src/reindex.hpp"
+#include "../lda/reindex.hpp"
 
 
 TEST_CASE("ij::i example works")

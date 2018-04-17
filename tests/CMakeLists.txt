@@ -27,7 +27,7 @@ add_executable(run_tests
     test_math.cc
     test_testutil.cc
 
-    ../src/lda.cc
+    ../lda/lda.cc
 )
 
 enable_testing()

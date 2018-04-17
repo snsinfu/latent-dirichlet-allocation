@@ -4,7 +4,7 @@
 #include <xtensor/xshape.hpp>
 #include <xtensor/xtensor.hpp>
 
-#include "../src/math.hpp"
+#include "../lda/math.hpp"
 
 
 TEST_CASE("log_beta reduces the last dimension")
